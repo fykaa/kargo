@@ -52,11 +52,20 @@ It initializes and manages the Kargo controller's operations, ensuring effective
 
 - **Resource Syncing**: The controllers are responsible for syncing Kargo resources within their respective clusters. This includes monitoring the state of resources and applying any necessary changes to align with the desired state defined in the control plane. Meanwhile, Argo CD handles the synchronization of application resources, ensuring that the applications deployed in the clusters reflect the configurations stored in Git repositories. This dual-layer synchronization enhances the overall reliability and consistency of deployments across the sharded topology.
 
-## Progressive delivery and rollouts
-- Dedicated rollouts controller
-   - Can coexist
-- Promotion workflow
-- Stages and freight
+## Progressive Delivery and Rollouts
+
+- **Dedicated Rollouts Controller**: A dedicated rollout controller is deployed within the clusters to facilitate progressive delivery. This controller is responsible for managing the rollout of application updates in a controlled manner, to ensure that changes are gradually introduced to the environment.
+<!-- 
+  - **Can Coexist**: Kargo’s rollout controller is designed to coexist with any existing rollout controllers that users may have deployed. This flexibility allows users to leverage Kargo’s capabilities while maintaining their current deployment strategies. -->
+
+- **Promotion Workflow**: Kargo automates the promotion of verified artifacts (releases) between different environments (shards) as part of its core functionality. The promotion workflow ensures that only tested and validated releases are moved from one environment to another, minimizing the risk of introducing errors into production. This process typically involves:
+  - **Verification**: Artifacts are verified in a staging environment before being promoted to production.
+  - **Approval**: Automated or manual approval processes can be integrated to ensure that only authorized changes are promoted.
+  - **Rollback Mechanisms**: Kargo provides mechanisms to roll back promotions if issues are detected post-deployment, ensuring system stability.
+
+- **Stages and Freight**: Kargo introduces the concepts of **Stages** and **Freights**, which are fundamental to how promotions are handled across multiple clusters:
+  - **Stages**: Stages represent different phases in the deployment lifecycle, such as development, testing, staging, and production. Each stage can have its own set of policies and configurations, allowing for tailored deployment strategies based on the environment's requirements.
+  - **Freights**: Freights are the units of deployment that carry the application artifacts through the various stages. They encapsulate the necessary metadata and configurations required for deployment, ensuring that the correct version of an application is delivered to the appropriate stage. Freights facilitate the tracking and management of application versions as they move through the promotion workflow.
 
 ## Security Considerations
    - Separation of permissions
