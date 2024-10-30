@@ -40,12 +40,3 @@
   --aa-input-border-color-rgb: 126, 126, 126 !important;
   --aa-input-background-color-rgb: 32, 32, 32 !important;
 }
-
-/* Pagination symbols for next and previous buttons */
-.pagination-nav__link--prev .pagination-nav__label:before {
-  content: '« ';
-}
-
-.pagination-nav__link--next .pagination-nav__label:after {
-  content: ' »';
-}
