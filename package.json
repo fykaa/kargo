@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/module-type-aliases": "^3.7.0",
+    "@docusaurus/types": "^3.7.0"
+  }
+}

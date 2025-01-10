@@ -41,7 +41,6 @@ const config = {
       }),
     ],
   ],
-
   plugins: [
     [
       path.join(__dirname, "plugins", "gtag", "lib"),
@@ -55,7 +54,11 @@ const config = {
       {
         indexBlog: false,
       },
-    ]
+    ],
+    [
+      path.join(__dirname, "plugins", "versioning", "lib"),
+      {},
+    ],
   ],
 
   themeConfig:
